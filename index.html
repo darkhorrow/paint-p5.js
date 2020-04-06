@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="color-picker-1"></div>
+    <script src="jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="p5.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="pickr.min.js"></script>
+    <script src="pickr.es5.min.js"></script>
+    <script src="all.min.js"></script>
+    <script src="model.js"></script>
+    <script src="sketch.js"></script>
+    <script>
+    const pickr = Pickr.create({
+      el: '#color-picker-1',
+      theme: 'nano', // or 'monolith', or 'nano'
+      default: '#000000',
+      defaultRepresentation: 'HEX',
+
+      components: {
+
+          // Main components
+          preview: true,
+          opacity: false,
+          hue: true,
+
+          // Input / output Options
+          interaction: {
+              hex: true,
+              rgba: true,
+              hsla: false,
+              hsva: false,
+              cmyk: false,
+              input: true,
+              clear: false,
+              save: true,
+              cancel: true
+          }
+      }
+    });
+      
+    pickr.on('save', (color, instance) => {
+      currentColor = "#" + color.toHEXA()[0] + 
+        color.toHEXA()[1] + color.toHEXA()[2];
+      pickr.hide()
+    })
+      
+    pickr.on('cancel', instance => {
+      pickr.hide()
+    })
+    </script>
+  
+
+</body></html>
